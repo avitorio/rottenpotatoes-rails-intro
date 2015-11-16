@@ -11,7 +11,17 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+      @movies = Movie.all
+  end
+  
+  def sort_title
+      @movies = Movie.order(:title)
+      render :index
+  end
+  
+  def sort_release_date
+      @movies = Movie.order(:release_date)
+      render :index
   end
 
   def new
@@ -41,5 +51,6 @@ class MoviesController < ApplicationController
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
   end
+  
 
 end
